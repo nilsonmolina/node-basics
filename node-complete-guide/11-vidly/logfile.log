@@ -1,0 +1,9 @@
+{"message":"Something failed miserably!","stack":"Error: Something failed miserably!\n    at Object.<anonymous> (/Users/nilsonmolina/projects/node-basics/10-vidly/index.js:32:26)\n    at Module._compile (module.js:652:30)\n    at Object.Module._extensions..js (module.js:663:10)\n    at Module.load (module.js:565:32)\n    at tryModuleLoad (module.js:505:12)\n    at Function.Module._load (module.js:497:3)\n    at Function.Module.runMain (module.js:693:10)\n    at startup (bootstrap_node.js:188:16)\n    at bootstrap_node.js:609:3","level":"error","timestamp":"2018-09-29T01:14:11.187Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-09-29T01:55:43.752Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-09-29T01:55:43.783Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-09-29T01:57:33.206Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-09-29T01:57:33.234Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-09-29T01:57:51.552Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-09-29T01:57:51.595Z"}
+{"level":"info","message":"Listening on port 3000...","timestamp":"2018-09-29T01:58:33.325Z"}
+{"level":"info","message":"Connected to MongoDB...","timestamp":"2018-09-29T01:58:33.355Z"}
