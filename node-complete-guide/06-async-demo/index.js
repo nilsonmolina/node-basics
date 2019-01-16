@@ -48,25 +48,25 @@
 --------------------------------------------*/
 // console.log('Before');
 // getUser(1, (user) => {
-//     console.log('User', user);
-//     getRepos(user, (repo) => {
-//         console.log('Repo', repo);
-//     });
+//   console.log('User', user);
+//   getRepos(user, (repo) => {
+//     console.log('Repo', repo);
+//   });
 // });
 // console.log('After');
 
 // function getUser(id, callback) {
-//     setTimeout(() => {
-//         console.log('Reading a user from database...');
-//         callback({ id: id, user: 'mosh' });
-//     }, 2000);
+//   setTimeout(() => {
+//     console.log('Reading a user from database...');
+//     callback({ id, user: 'mosh' });
+//   }, 2000);
 // }
 
 // function getRepos(username, callback) {
-//     setTimeout(() => {
-//         console.log('Calling API...');
-//         callback(['repo1', 'repo2', 'repo3']);
-//     }, 2000);
+//   setTimeout(() => {
+//     console.log('Calling API...');
+//     callback(['repo1', 'repo2', 'repo3']);
+//   }, 2000);
 // }
 
 /*--------------------------------------------
@@ -188,49 +188,49 @@
     An object that holds the eventual result
     of an async operation.
 --------------------------------------------*/
-console.log('Before');
-async function displayCommits() {
-  try {
-    const user = await getUser(1);
-    const repos = await getRepos(user);
-    const commits = await getCommits(repos[0]);
-    console.log(commits);
-  } catch (err) {
-    console.log('Error', err.message);
-  }
-}
-displayCommits();
-console.log('After');
+// console.log('Before');
+// async function displayCommits() {
+//   try {
+//     const user = await getUser(1);
+//     const repos = await getRepos(user);
+//     const commits = await getCommits(repos[0]);
+//     console.log(commits);
+//   } catch (err) {
+//     console.log('Error', err.message);
+//   }
+// }
+// displayCommits();
+// console.log('After');
 
 
-// Asynchronous Functions
-function getUser(id) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (!id) { reject(new Error('could not get user.')); return; }
+// // Asynchronous Functions
+// function getUser(id) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (!id) { reject(new Error('could not get user.')); return; }
 
-      console.log('Got the username!');
-      resolve({ id, user: 'mosh' });
-    }, 2000);
-  });
-}
-function getRepos(user) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (!user) { reject(new Error('could not retrieve repos')); return; }
+//       console.log('Got the username!');
+//       resolve({ id, user: 'mosh' });
+//     }, 2000);
+//   });
+// }
+// function getRepos(user) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (!user) { reject(new Error('could not retrieve repos')); return; }
 
-      console.log('Retrieved the list of repos...');
-      resolve(['repo1', 'repo2', 'repo3']);
-    }, 2000);
-  });
-}
-function getCommits(repo) {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (!repo) { reject(new Error('could not list commits')); return; }
+//       console.log('Retrieved the list of repos...');
+//       resolve(['repo1', 'repo2', 'repo3']);
+//     }, 2000);
+//   });
+// }
+// function getCommits(repo) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       if (!repo) { reject(new Error('could not list commits')); return; }
 
-      console.log('Listing the commits:');
-      resolve(['commit1', 'commit2', 'commit3']);
-    }, 2000);
-  });
-}
+//       console.log('Listing the commits:');
+//       resolve(['commit1', 'commit2', 'commit3']);
+//     }, 2000);
+//   });
+// }
