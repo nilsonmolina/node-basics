@@ -28,7 +28,7 @@
 </head>
 <body>
     <h2>http</h2>
-    <form action="http:/127.0.0.1:3000/api/files/raw" enctype="multipart/form-data" method="post">
+    <form action="http://127.0.0.1:3000/api/files/raw" enctype="multipart/form-data" method="post">
         <input type="text" name="name" id="">
         <input type="date" name="date" id="">
         <input type="file" name="pricelist">
@@ -60,6 +60,7 @@
 
         // FUNCTIONS
         function connectSocket() {
+            if (socket.disconnected) socket.connect('http://127.0.0.1:3000');
             console.log('tracking response times');
             heartbeat = setInterval(sendHeartbeat, 1000);
         };
@@ -67,6 +68,7 @@
         function disconnectSocket() {
             console.log('disconnected');
             clearInterval(heartbeat);
+            socket.close();
         };
 
         function sendHeartbeat() {
