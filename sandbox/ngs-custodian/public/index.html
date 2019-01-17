@@ -5,13 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <style>
+        .output {
+            height: 300px;
+            width: 300px;
+            padding: 10px;
+            background: #333;
+            color: #fff;
+            overflow-x: auto;
+        }
+        .output h3 {
+            margin: 0;
+        }
+        .responses {
+            list-style-type: none;
+            margin-block-start: 10px;
+            margin-block-end: 0;
+            padding-inline-start: 10px;
+        }
+    </style>
 </head>
 <body>
-    <form action="http://127.0.0.1:3000/api/files/raw" enctype="multipart/form-data" method="post">
+    <h2>http</h2>
+    <form action="http:/127.0.0.1:3000/api/files/raw" enctype="multipart/form-data" method="post">
         <input type="text" name="name" id="">
         <input type="date" name="date" id="">
         <input type="file" name="pricelist">
         <input type="submit" value="Upload">
-    </form>  
+    </form>
+
+    <h2>websockets</h2>
+    <button class="connect">connect</button>
+    <button class="disconnect">disconnect</button>
+    <div class="output">
+        <h3>Response Times</h3>
+        <ul class="responses"></ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        // VARIABLES
+        const socket = io.connect('http://127.0.0.1:3000');
+        const btnConnect = document.querySelector('.connect');
+        const btnDisconnect = document.querySelector('.disconnect');
+        const output = document.querySelector('.output');
+        const responses = document.querySelector('.responses');
+
+        let heartbeat = null;
+
+        // EVENTS
+        btnConnect.addEventListener('click', connectSocket);
+        btnDisconnect.addEventListener('click', disconnectSocket);
+
+        // FUNCTIONS
+        function connectSocket() {
+            console.log('tracking response times');
+            heartbeat = setInterval(sendHeartbeat, 1000);
+        };
+
+        function disconnectSocket() {
+            console.log('disconnected');
+            clearInterval(heartbeat);
+        };
+
+        function sendHeartbeat() {
+            socket.emit('heartbeat', { timestamp: Date.now() });
+        };
+
+        // WEBSOCKET EVENTS
+        socket.on('connect', () => console.log('socket.io connected'));
+        socket.on('heartbeat', (payload) => {
+            const time = Date.now() - payload.timestamp;
+            const item = document.createElement('li');
+            item.innerHTML = `${time} ms`;
+            responses.appendChild(item);
+            output.scrollTop = output.scrollHeight;
+        });
+
+    </script>
 </body>
 </html>

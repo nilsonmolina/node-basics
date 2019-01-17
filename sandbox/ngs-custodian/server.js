@@ -1,5 +1,6 @@
 // APP DEPENDENCIES
 const morgan = require('morgan');
+const socketio = require('socket.io');
 const express = require('express');
 
 const files = require('./routes/files');
@@ -17,5 +18,19 @@ app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
 app.use(express.static('public'));
 app.use('/api/files', files);
 
-// START SERVER
-app.listen(port, () => console.log(`Listening on port ${port}...`));
+// START SERVER - listens for http and websockets
+const server = app.listen(port, () => console.log(`Listening on port ${port}...`));
+const io = socketio.listen(server);
+
+// WEBSOCKET CALLS
+io.on('connection', (socket) => {
+  console.log('Client connected.');
+
+  socket.on('heartbeat', (payload) => {
+    socket.emit('heartbeat', payload);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('Client disconnected.');
+  });
+});
