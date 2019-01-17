@@ -1,0 +1,12 @@
+// CREATE TABLE
+CREATE TABLE "public"."courses" (
+  "id" serial,
+  "name" text,
+  PRIMARY KEY ("id")
+);
+
+
+// INSERT DATA
+INSERT INTO "public"."courses"("name") VALUES('English') RETURNING "id", "name";
+INSERT INTO "public"."courses"("name") VALUES('Math') RETURNING "id", "name";
+INSERT INTO "public"."courses"("name") VALUES('Science') RETURNING "id", "name";
