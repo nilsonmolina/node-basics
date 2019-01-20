@@ -29,10 +29,12 @@
 <body>
     <h2>http</h2>
     <form action="http://127.0.0.1:3000/api/files/raw" enctype="multipart/form-data" method="post">
-        <input type="text" name="name" id="">
-        <input type="date" name="date" id="">
+        <input type="text" name="name" class="form-input">
+        <input type="date" name="date" class="form-input">
         <input type="file" name="pricelist">
-        <input type="submit" value="Upload">
+        <input type="submit" value="FORM SUBMIT">
+        <input type="submit" value="AJAX SUBMIT" class="form-submit-ajax">
+        <span class="upload-progress"></span>
     </form>
 
     <h2>websockets</h2>
@@ -44,21 +46,62 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
     <script>
         // VARIABLES
         const socket = io.connect('http://127.0.0.1:3000');
-        const btnConnect = document.querySelector('.connect');
-        const btnDisconnect = document.querySelector('.disconnect');
-        const output = document.querySelector('.output');
-        const responses = document.querySelector('.responses');
-
         let heartbeat = null;
 
-        // EVENTS
-        btnConnect.addEventListener('click', connectSocket);
-        btnDisconnect.addEventListener('click', disconnectSocket);
+        const ui = {
+            http: {
+                form: document.querySelector('form'),
+                textInputs: document.querySelectorAll('form .form-input'),
+                file: document.querySelector('form input[type="file"]'),
+                submit: document.querySelector('form .form-submit-ajax'),
+                progress: document.querySelector('form .upload-progress')
+            },
+            websocket: {
+                btnConnect: document.querySelector('.connect'),
+                btnDisconnect: document.querySelector('.disconnect'),
+                output: document.querySelector('.output'),
+                responses: document.querySelector('.responses'),
+            }
+        }
 
-        // FUNCTIONS
+
+        // EVENT LISTENERS
+        ui.http.submit.addEventListener('click', formSubmit);
+        ui.websocket.btnConnect.addEventListener('click', connectSocket);
+        ui.websocket.btnDisconnect.addEventListener('click', disconnectSocket);
+
+        // EVENT LISTENER FUNCTIONS
+        function formSubmit(event) {
+            event.preventDefault();
+            if (!ui.http.form.checkValidity()) return;
+
+            const fd = new FormData();
+            for (input of ui.http.textInputs) {
+                fd.append(input.name, input.value);
+            }
+            fd.append('pricelist', ui.http.file.files[0]);
+            
+            const config = {
+                headers: { 'Content-Type': 'multipart/form-data' },
+                onUploadProgress: (progressEvent) => {
+                    const percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+                    ui.http.progress.innerHTML = `${percentCompleted} %`;
+                },
+            };
+
+            axios.post('http://127.0.0.1:3000/api/files/upload', fd, config)
+                .then(function (res) {
+                    console.log(`response: ${res}`);
+                })
+                .catch(function (err) {
+                    console.log(`response: ${err}`);
+                });
+        };
+
         function connectSocket() {
             if (socket.disconnected) socket.connect('http://127.0.0.1:3000');
             console.log('tracking response times');
@@ -81,8 +124,8 @@
             const time = Date.now() - payload.timestamp;
             const item = document.createElement('li');
             item.innerHTML = `${time} ms`;
-            responses.appendChild(item);
-            output.scrollTop = output.scrollHeight;
+            ui.websocket.responses.appendChild(item);
+            ui.websocket.output.scrollTop = ui.websocket.output.scrollHeight;
         });
 
     </script>

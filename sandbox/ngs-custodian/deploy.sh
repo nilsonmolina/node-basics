@@ -1,5 +1,5 @@
 #!/bin/bash
-tar czf ngs-custodian.tar.gz server.js package.json package-lock.json ecosystem.config.js db logs public routes uploads
+tar czf ngs-custodian.tar.gz server.js package.json package-lock.json ecosystem.config.js db public routes uploads utilities
 scp -r -i ~/.ssh/aws-kp-2018-02-05.pem ngs-custodian.tar.gz ubuntu@23.23.42.188:~
 rm ngs-custodian.tar.gz
 
@@ -14,6 +14,7 @@ npm install
 sed -i -e 's/127.0.0.1/23.23.42.188/g' ./public/index.html
 rm db/index.js
 mv db/.index.js db/index.js
+mkdir logs
 pm2 start
 ENDSSH
 
