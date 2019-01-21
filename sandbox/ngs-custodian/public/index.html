@@ -28,10 +28,10 @@
 </head>
 <body>
     <h2>http</h2>
-    <form action="http://127.0.0.1:3000/api/files/raw" enctype="multipart/form-data" method="post">
+    <form action="http://127.0.0.1:3000/api/uploads/form" enctype="multipart/form-data" method="post">
         <input type="text" name="name" class="form-input">
         <input type="date" name="date" class="form-input">
-        <input type="file" name="pricelist">
+        <input type="file" name="pricelist" required>
         <input type="submit" value="FORM SUBMIT">
         <input type="submit" value="AJAX SUBMIT" class="form-submit-ajax">
         <span class="upload-progress"></span>
@@ -76,8 +76,8 @@
 
         // EVENT LISTENER FUNCTIONS
         function formSubmit(event) {
-            event.preventDefault();
             if (!ui.http.form.checkValidity()) return;
+            event.preventDefault();
 
             const fd = new FormData();
             for (input of ui.http.textInputs) {
@@ -93,7 +93,7 @@
                 },
             };
 
-            axios.post('http://127.0.0.1:3000/api/files/upload', fd, config)
+            axios.post('http://127.0.0.1:3000/api/uploads/ajax', fd, config)
                 .then(function (res) {
                     console.log(`response: ${res}`);
                 })
