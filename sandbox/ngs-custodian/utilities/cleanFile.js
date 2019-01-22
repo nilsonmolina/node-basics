@@ -1,8 +1,20 @@
 // DEPENDENCIES
 const fs = require('fs');
+const path = require('path');
 // const debug = require('debug')('utilities');
+const { exec } = require('child_process');
 
-function cleanFile(inputPath, outputPath) {
+function cleanFileBash(inputPath, outputPath) {
+  return new Promise((resolve, reject) => {
+    const script = path.join(__dirname, '../bash/clean-cat.sh');
+    exec(`${script} ${inputPath} ${outputPath}`, (err, stdout) => {
+      if (err) reject(err);
+      resolve(stdout);
+    });
+  });
+}
+
+function cleanFileJS(inputPath, outputPath) {
   return new Promise(async (resolve, reject) => {
     try {
       const cleanData = await readFile(inputPath);
@@ -17,7 +29,7 @@ function readFile(filepath) {
     fs.readFile(filepath, (err, data) => {
       if (err) reject(err);
 
-      const clean = data.toString().split('\r\n').map((row) => {
+      resolve(data.toString().split('\r\n').map((row) => {
         let r = row.split(',').map((col, index) => {
           // clean columns
           let column = col;
@@ -29,9 +41,7 @@ function readFile(filepath) {
         // add column
         if (r.length > 1) r += ',CAT';
         return r;
-      }).join('\r\n');
-
-      resolve(clean);
+      }).join('\r\n'));
     });
   });
 }
@@ -45,4 +55,7 @@ function writeFile(filepath, data) {
   });
 }
 
-module.exports = cleanFile;
+module.exports = {
+  cleanFileJS,
+  cleanFileBash,
+};

@@ -1,10 +1,10 @@
 // DEPENDENCIES
-// const debug = require('debug')('routes:files');
+// const debug = require('debug')('routes');
 const path = require('path');
 const multer = require('multer');
 const express = require('express');
 
-const cleanFile = require('../utilities/cleanFile');
+const { cleanFileBash } = require('../utilities/cleanFile');
 
 // SETUP
 const router = express.Router();
@@ -15,9 +15,8 @@ router.get('/', (req, res) => res.send('You made it!'));
 
 router.post('/form', upload.single('pricelist'), async (req, res) => {
   const input = path.join(__dirname, '../uploads', req.file.filename);
-  const output = path.join(__dirname, '../public/test.txt');
-
-  await cleanFile(input, output);
+  const output = path.join(__dirname, '../public/test.csv');
+  await cleanFileBash(input, output);
 
   res.download(output, 'cleaned.csv');
 });
