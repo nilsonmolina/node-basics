@@ -1,0 +1,47 @@
+/* ---------------------------------------------------
+    BASE STYLES
+--------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,600');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+    user-select: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: 300;
+
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(225deg,
+    #06CACB 0%, #06CACB 30%,
+    #DDE5EE 30%, #DDE5EE 75%,
+    #F5F7FA 75%, #F5F7FA 100%
+  );
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+input {
+  border: none;
+}
+input:focus {
+  outline: none;
+  border-bottom: none;
+}
