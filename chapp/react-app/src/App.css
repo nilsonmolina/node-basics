@@ -1,151 +1,22 @@
 .App {
-  width: 1000px;
+  width: 900px;
   height: 750px;
   display: flex;
   flex-direction: row;
   align-items: stretch;
   display: flex;
-  box-shadow: 0 0 50px rgba(0,0,0,.25);
-  transition: box-shadow 0.2s ease-in;
-}
-.App:hover {
   box-shadow: 0 0 25px rgba(0,0,0,.25);
 }
 
-.Sidebar {
-  box-sizing: border-box;
-  height: 100%;
-  width: 275px;
-  padding: 20px 40px;;
-  background: #fff;
-  box-shadow: 4px 0 4px rgba(0,0,0,.1);
-  z-index: 1;
-}
-.Sidebar h2 {
-  font-size: 32px;
-  font-weight: 300;
-  text-align: center;
-  color: #888;
-  margin: 30px 0;
-}
-.Sidebar h2 span {
-  font-weight: 600;
-  color: #444;
-}
-.Sidebar .SearchBar {
-  padding: 12px 15px;
-  border: 1px solid rgba(64,64,64,.2);
-  border-radius: 3px;
-  box-shadow: 0 0 5px rgba(0,0,0,.1);
-  display: flex;
-}
-.Sidebar .SearchBar input {
-  font-size: 12px;
-  color: #444;
-}
-.Sidebar .SearchBar input::placeholder {
-  color: rgba(0,0,0,.3);
-}
-.Sidebar .SearchBar span {
-  margin-left: auto;
-  color: rgba(0,0,0,.3);
-}
-
-.Sidebar .UserList h3 {
-  margin-top: 30px;
-  font-weight: 600;
-  font-size: 12px;
-  text-transform: uppercase;
-  color: #777;
-}
-.Sidebar .UserList .User {
-  margin: 7px 0;
-  padding-left: 5px;
-  font-size: 12px;
-  font-weight: 400;
-  color: #777;
-  position: relative;
-}
-/* .Sidebar .UserList .User::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #06CACB;
-  position: absolute;
-  top: 4px;
-  left: 7px;
-} */
-
-.MessageList {
-  box-sizing: border-box;
-  height: 100%;
-  flex: 1;
-  padding: 15px 40px;
-  overflow-y: auto;
-  background: #DFE5EE;
-}
-
-.Message {
-  margin: 15px 0;
-  max-width: 65%;  
-}
-.Message .bubble {
-  padding: 7px 15px;
-  border-radius: 5px;
-  color: #888;
-  font-weight: 400;
-  font-size: 14px;
-  background: #fff;
-  box-shadow: 5px 7px 7px rgba(0,0,0,.15);
-  transition: box-shadow .2s ease-in;
-  position: relative;
-  display: inline-block;
-}
-.Message .bubble:hover {
-  box-shadow: 3px 4px 5px rgba(0,0,0,.15);
-}
-.Message .bubble::before {
-  content: "";
-  height: 0;
-  width: 0;
-  position: absolute;
-  left: -9px;
-  top: 0;
-  border: 9px solid black;
-  border-top-color: #fff;
-  border-right-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-}
-.Message.me {
-  margin-left: auto;
-}
-.Message.me .bubble {
-  background: #F2F5FA;
-  box-shadow: -5px 7px 7px rgba(0,0,0,.15);
-}
-.Message.me .bubble:hover {
-  box-shadow: -3px 4px 5px rgba(0,0,0,.15);
-}
-.Message.me .bubble::before {
-  left: calc(100% - 9px);
-  border-top-color: #F2F5FA;
-}
-.Message .meta {
-  margin-top: 3px;
-  display: flex;
-  font-size: 10px;
-}
-.Message .name {
-  color: #06CACB;
-  font-weight: 600;
-  text-transform: uppercase;
-  display: inline-block;
-}
-.Message .date {
-  font-weight: 400;
-  color: #555;
-  margin-left: auto;
-  padding-left: 15px;
+@keyframes disappear {
+  0% {
+    opacity: 1;
+  }
+  99% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+    display: none;
+  }
 }

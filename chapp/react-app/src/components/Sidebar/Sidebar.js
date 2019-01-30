@@ -1,6 +1,7 @@
 import React from 'react';
-import SearchBar from './SearchBar';
 import UserList from './UserList';
+import './Sidebar.css';
+
 
 class Sidebar extends React.Component {
   state = {
@@ -17,8 +18,11 @@ class Sidebar extends React.Component {
   render() {
     return (
       <section className="Sidebar">
-      <h2>ch<span>app.</span></h2>
-        <SearchBar />
+        <div className="heading">
+          <h2>ch<span>app.</span></h2>
+          <div className="subtitle">A realtime chat application</div>
+        </div>
+        
         <UserList users={this.state.users} />
       </section>
     );

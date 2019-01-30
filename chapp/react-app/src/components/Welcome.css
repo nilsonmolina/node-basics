@@ -1,0 +1,51 @@
+.Welcome.hidden {
+  animation: disappear 1s forwards;
+}
+.Welcome {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--primary-color);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Welcome .modal {
+  padding: 75px 125px;
+  background: #fff;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0,0,0,.3);
+}
+.Welcome h2 {
+  font-size: 40px;
+  font-weight: 300;
+  color: #888;
+  margin-bottom: 5px;
+}
+.Welcome h2 span {
+  font-weight: 600;
+  color: #444;
+}
+.Welcome p {
+  font-size: 13px;
+}
+.Welcome form {
+  margin-top: 15px;
+}
+.Welcome form .username {
+  width: 100%;
+  font-size: 13px;
+  font-weight: 300;
+  color: #444;
+  padding: 10px;
+  border-bottom: 1px solid rgba(127,127,127,.2);
+  transition: border .25s ease-in;
+}
+.Welcome form .username:focus {
+  border-bottom: 1px solid var(--primary-color);
+}

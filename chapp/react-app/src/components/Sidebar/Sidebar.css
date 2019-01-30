@@ -1,0 +1,46 @@
+.Sidebar {
+  box-sizing: border-box;
+  height: 100%;
+  width: 250px;
+  padding: 20px 40px;;
+  background: #fff;
+  box-shadow: 4px 0 4px rgba(0,0,0,.1);
+  z-index: 1;
+}
+.Sidebar .heading h2 {
+  font-size: 32px;
+  font-weight: 300;
+  text-align: center;
+  color: #888;
+  margin: 20px 0 0 0;
+}
+.Sidebar .heading h2 span {
+  font-weight: 600;
+  color: #444;
+}
+.Sidebar .heading .subtitle {
+  margin-top: 0;
+  text-align: center;
+  font-size: 12px;
+  color: #444;
+}
+
+.Sidebar .UserList {
+  height: 300px;
+  margin-top: 40px;
+  overflow-y: auto;
+}
+.Sidebar .UserList h3 {
+  font-weight: 400;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #888;
+}
+.Sidebar .UserList .User {
+  margin: 7px 0;
+  padding-left: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  position: relative;
+}
