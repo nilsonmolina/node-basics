@@ -21,8 +21,6 @@
 }
 
 body {
-  margin: 0;
-  padding: 0;
   font-family: "Lato", "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -39,11 +37,7 @@ body {
     #DDE5EE 30%, #DDE5EE 75%,
     #F5F7FA 75%, #F5F7FA 100%
   );
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  overflow-y: hidden;
 }
 
 input {
@@ -56,3 +50,10 @@ input:focus {
 
 /* FIXES WEIRD SAFARI GLITCH */
 input { -webkit-user-select: text; }
+
+
+@media only screen and (max-width: 700px) {
+  body {
+    background-image: none;
+  }
+}

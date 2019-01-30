@@ -44,3 +44,21 @@
   color: #888;
   position: relative;
 }
+
+/* RESPONSIVE WIDTHS */
+@media only screen and (max-width: 1000px) {
+  
+}
+@media only screen and (max-width: 700px) {
+  .Sidebar {
+    display: none;
+  }
+}
+@media only screen and (max-width: 350px) {
+  
+}
+
+/* RESPONSIVE HEIGHTS */
+@media only screen and (max-height: 400px) {
+  
+}

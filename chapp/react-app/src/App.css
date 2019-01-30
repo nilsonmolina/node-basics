@@ -1,6 +1,6 @@
 .App {
   width: 900px;
-  height: 750px;
+  height: 80vh;
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -8,15 +8,26 @@
   box-shadow: 0 0 25px rgba(0,0,0,.25);
 }
 
-@keyframes disappear {
-  0% {
-    opacity: 1;
+/* RESPONSIVE WIDTHS */
+@media only screen and (max-width: 1000px) {
+  .App {
+    width: 700px;
   }
-  99% {
-    opacity: 0;
+}
+@media only screen and (max-width: 700px) {
+  .App {
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
   }
-  100% {
-    opacity: 0;
-    display: none;
+}
+@media only screen and (max-width: 350px) {
+  
+}
+
+/* RESPONSIVE HEIGHTS */
+@media only screen and (max-height: 400px) {
+  .App {
+    height: 100vh;
   }
 }

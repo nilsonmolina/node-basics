@@ -32,8 +32,11 @@ class Welcome extends React.Component {
       <section className="Welcome">
         <div className="modal">
           <h2>ch<span>app.</span></h2>
-          <p>Welcome to my chat app... chapp!</p>
-          {/* <p>To begin, type a username below.</p> */}
+          <p>
+            Welcome to my chat app... chapp!
+            <br/>
+            To begin, enter a username.
+          </p>
           <form onSubmit={this.submitHandler}>
             <input
               onChange={this.inputHandler}
@@ -43,7 +46,6 @@ class Welcome extends React.Component {
               minLength="2"
               maxLength="25"
               required
-              autoFocus
             />
           </form>
         </div>
