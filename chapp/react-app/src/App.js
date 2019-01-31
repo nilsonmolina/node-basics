@@ -13,7 +13,7 @@ class App extends Component {
   };
 
   componentWillMount() {
-    this.setState({ socket: socketio.connect('http://23.23.42.188:5000') });
+    this.setState({ socket: socketio.connect('http://127.0.0.1:5000') });
   };
 
   logIn = () => {

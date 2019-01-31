@@ -11,6 +11,7 @@ cd ../server
 tar czf chapp.tar.gz server.js package.json package-lock.json ecosystem.config.js public
 scp -r -i ~/.ssh/aws-kp-2018-02-05.pem chapp.tar.gz ubuntu@23.23.42.188:~
 rm chapp.tar.gz
+mv ../react-app/src/App.js-e ../react-app/src/App.js
 
 ssh -i ~/.ssh/aws-kp-2018-02-05.pem ubuntu@23.23.42.188 << 'ENDSSH'
 pm2 delete chapp
