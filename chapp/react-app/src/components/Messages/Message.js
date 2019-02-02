@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Message = (props) => (
-  <div className={`Message ${props.message.socket === sessionStorage.socket ? "me" : "" }`}>
+  <div className={`Message ${props.message.socket === sessionStorage.socketId ? "me" : "" }`}>
     <div className="bubble">
       <p>{props.message.body}</p>
       

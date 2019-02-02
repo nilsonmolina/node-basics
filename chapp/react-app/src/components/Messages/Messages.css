@@ -1,6 +1,4 @@
 .Messages {
-  min-width: 300px;
-  min-height: 200px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -113,10 +111,18 @@
   
 }
 @media only screen and (max-width: 700px) {
-
+  .Messages {
+    height: calc(100% - 100px);
+  }
+  .MessageList {
+    padding: 15px 30px;
+  }
 }
 @media only screen and (max-width: 350px) {
-
+  .Message {
+    margin: 7px 0;
+    max-width: 100%;
+  }
 }
 /* RESPONSIVE HEIGHTS */
 @media only screen and (max-height: 400px) {

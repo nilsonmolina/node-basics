@@ -3,30 +3,25 @@ import UserList from './UserList';
 import './Sidebar.css';
 
 
-class Sidebar extends React.Component {
-  state = {
-    users: [],
-  };
+const Sidebar = (props) => (
+  <section className="Sidebar">
+    <input type="checkbox" id="sidebar-toggle"/>
 
-  componentDidMount() {
-    if (!this.props.socket) return;
-    this.props.socket.on('usersChanged', (users) => {
-      this.setState({ users });
-    });
-  };
+    <label htmlFor="sidebar-toggle" className="mobile-button">
+      <div className="lines"></div>
+      <div className="lines"></div>
+      <div className="lines"></div>
+    </label>
 
-  render() {
-    return (
-      <section className="Sidebar">
-        <div className="heading">
-          <h2>ch<span>app.</span></h2>
-          <div className="subtitle">A realtime chat application</div>
-        </div>
-        
-        <UserList users={this.state.users} />
-      </section>
-    );
-  }
-}
+    <div className="heading">
+      <h2>ch<span>app.</span></h2>
+      <div className="subtitle">A realtime chat application</div>
+    </div>
+    
+    <div className="sidebar-items">
+      <UserList users={props.users} />
+    </div>
+  </section>
+);
 
 export default Sidebar;

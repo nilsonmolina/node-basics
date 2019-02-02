@@ -5,8 +5,8 @@ import './Messages.css';
 
 const Messages = (props) => (
   <section className="Messages">
-    <MessageList socket={props.socket} />
-    <CreateMessage socket={props.socket} />
+    <MessageList messages={props.messages} />
+    <CreateMessage sendMessage={props.sendMessage} />
   </section>
 );
 

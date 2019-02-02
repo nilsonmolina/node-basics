@@ -4,8 +4,7 @@ import './Welcome.css';
 
 class Welcome extends React.Component {
   state = {
-    username: "",
-    input: "",
+    input: sessionStorage.username || '',
   };
 
   inputHandler = (e) => {
@@ -14,17 +13,7 @@ class Welcome extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    this.setState(
-      (state) => ({ username: state.input }),
-      this.saveUsername
-    );
-  };
-
-  saveUsername = () => {
-    this.props.socket.emit('setUsername', { name: this.state.username });
-    sessionStorage.setItem('username', this.state.username);
-    sessionStorage.setItem('socket', this.props.socket.id);
-    this.props.logIn();
+    this.props.tryLogin(this.state.input);
   };
 
   render() {
@@ -32,14 +21,18 @@ class Welcome extends React.Component {
       <section className="Welcome">
         <div className="modal">
           <h2>ch<span>app.</span></h2>
+          { this.props.state.loginErr
+            ? <span className="error">{this.props.state.loginErr}</span>
+            : null
+          }
           <p>
-            Welcome to my chat app... chapp!
-            <br/>
+            Welcome to my chat app... chapp! <br/>
             To begin, enter a username.
           </p>
           <form onSubmit={this.submitHandler}>
             <input
               onChange={this.inputHandler}
+              value={this.state.input}
               className="username"
               placeholder="Username"
               type="text"

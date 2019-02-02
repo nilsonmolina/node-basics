@@ -1,7 +1,8 @@
 import React from 'react';
 
 class CreateMessage extends React.Component {
-  state = { message: "" };
+  static initialState = { message: '' };
+  state = CreateMessage.initialState;
 
   inputHandler = (e) => {
     this.setState({ message: e.target.value });
@@ -9,8 +10,8 @@ class CreateMessage extends React.Component {
 
   submitHandler = (e) => {
     e.preventDefault();
-    this.props.socket.emit('sendMessage', { message: this.state.message });
-    this.setState({ message: "" });
+    this.props.sendMessage(this.state.message);
+    this.setState(CreateMessage.initialState);
   };
 
   render() {
