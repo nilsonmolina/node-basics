@@ -10,15 +10,16 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
 const accessLogStream = fs.createWriteStream(path.join(__dirname, '/logs/morgan.log'), { flags: 'a' });
+const skipLog = req => !req.url.match(/html/ig);
 
 // LOAD MIDDLEWARE
-app.use(morgan('combined', { stream: accessLogStream }));
+app.use(morgan('combined', { stream: accessLogStream, skip: skipLog }));
 
 // LOAD STATIC ROUTES
 app.use(express.static('public'));
 
 // START SERVER
-const server = app.listen(port, () => console.log(`Listening on port ${port}...`));
+const server = app.listen(port, '127.0.0.1', () => console.log(`Listening on port ${port}...`));
 const io = socketio.listen(server);
 
 // WEBSOCKET CALLS

@@ -2,7 +2,7 @@
 set -e # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 
 cd react-app/
-sed -i -e 's/127.0.0.1/23.23.42.188/g' ./src/App.js
+sed -i -e 's/127.0.0.1:5000/chapp.ml/g' ./src/App.js
 npm run build
 rm -rf ../server/public/
 cp -r build/ ../server/public/
