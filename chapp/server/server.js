@@ -1,22 +1,15 @@
-// APP DEPENDENCIES
-const fs = require('fs');
-const path = require('path');
 const debug = require('debug')('server');
-const morgan = require('morgan');
 const socketio = require('socket.io');
 const express = require('express');
 
 // SETUP
 const app = express();
 const port = process.env.PORT || 5000;
-const accessLogStream = fs.createWriteStream(path.join(__dirname, '/logs/morgan.log'), { flags: 'a' });
-const skipLog = req => !req.url.match(/html/ig);
 
-// LOAD MIDDLEWARE
-app.use(morgan('combined', { stream: accessLogStream, skip: skipLog }));
-
-// LOAD STATIC ROUTES
-app.use(express.static('public'));
+// ROUTES
+app.get('/api/headers', (req, res) => {
+  res.json({ headers: req.headers, address: req.connection.remoteAddress });
+});
 
 // START SERVER
 const server = app.listen(port, '127.0.0.1', () => console.log(`Listening on port ${port}...`));

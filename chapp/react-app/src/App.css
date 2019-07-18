@@ -8,6 +8,16 @@
   box-shadow: 0 0 25px rgba(0,0,0,.25);
 }
 
+.WebRTC {
+  width: 900px;
+  height: 700px;
+  position: relative;
+  background: white;
+}
+.WebRTC video {
+  position: absolute;
+}
+
 /* RESPONSIVE WIDTHS */
 @media only screen and (max-width: 1000px) {
   .App {

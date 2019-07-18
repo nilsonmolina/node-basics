@@ -18,7 +18,7 @@ class App extends Component {
   state = App.initialState;
 
   componentWillMount() {
-    const socket = socketio.connect('http://127.0.0.1:5000');
+    const socket = socketio.connect('127.0.0.1:5000');
 
     socket.on('connect', () => this.setState({ 
       socket,

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>/chat</title>
+</head>
+<body>
+    <h2>websockets</h2>
+    <button class="connect">connect</button>
+    <button class="disconnect">disconnect</button>
+    <div class="output">
+        <h3>Response Times</h3>
+        <ul class="responses"></ul>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script>
+        // VARIABLES
+        const socket = io.connect('http://127.0.0.1:3000/chat');
+        const ui = {
+            websocket: {
+                btnConnect: document.querySelector('.connect'),
+                btnDisconnect: document.querySelector('.disconnect'),
+                output: document.querySelector('.output'),
+                responses: document.querySelector('.responses'),
+            }
+        };
+
+        // EVENT LISTENERS
+        ui.websocket.btnConnect.addEventListener('click', connectSocket);
+        ui.websocket.btnDisconnect.addEventListener('click', disconnectSocket);
+
+        // EVENT LISTENER FUNCTIONS
+        function connectSocket() {
+            if (socket.disconnected) socket.connect('http://127.0.0.1:3000/chat');
+            socket.emit('messageSend', { message: 'Hello everyone.' });
+        };
+
+        function disconnectSocket() {
+            console.log('disconnected');
+            socket.close();
+        };
+
+        // WEBSOCKET EVENTS
+        socket.on('connect', () => console.log('socket.io connected'));
+        socket.on('messageReceived', (payload) => {
+            const item = document.createElement('li');
+            item.innerHTML = `${payload.response}`;
+            ui.websocket.responses.appendChild(item);
+            ui.websocket.output.scrollTop = ui.websocket.output.scrollHeight;
+        });
+
+    </script>
+</body>
+</html>
